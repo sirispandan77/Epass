@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+    <style>
+        body {
+            background: #67B26F;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #4ca2cd, #67B26F);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #4ca2cd, #67B26F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            padding: 0;
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            color: #000;
+            background-image:  url('../static/imgs/backpack.jpg');
+            background-size:cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+         .student-profile .card {
+            border-radius: 10px;
+        }
+        .student-profile .card .card-header .profile_img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 10px auto;
+            border: 10px solid #ccc;
+            border-radius: 50%;
+        }
+        .student-profile .card h3 {
+                font-size: 20px;
+                font-weight: 700;
+            }
+        .student-profile .card p {
+                font-size: 16px;
+                color: #000;
+            }
+        .student-profile .table th,
+            .student-profile .table td {
+                font-size: 14px;
+                padding: 5px 10px;
+                color: #000;
+            }
+        .card-body{
+          border-left: 20 px;
+        }
+    </style>
+</head>
+<body>
+<div class="student-profile py-4">
+  <h1 class="text-center" style="color:#fff"><b>APPLICANT DETAILS</b></h1>
+  <div class="container" style="margin-top: 70px">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent text-center">
+            <img class="profile_img" src="{{link}}" alt="person photo">
+            <h3>{{ fullname }}</h3>
+          </div>
+          <div class="card-body" style="margin-left: 20px">
+
+            <p class="mb-0"><strong class="pr-1">First Name:</strong>{{ fname }}</p><br>
+            <p class="mb-0"><strong class="pr-1">Last Name:</strong>{{ lname }}</p><br>
+            <p class="mb-0"><strong class="pr-1">Phone number:</strong>{{ phno }}</p><br>
+            <p class="mb-0"><strong class="pr-1">Emergency PhNo:</strong>{{ emno }}</p><br>
+            <p class="mb-0"><strong class="pr-1">Email:</strong>{{ email }}</p><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8" >
+        <div class="card shadow-sm" >
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Travel Information</h3>
+          </div>
+          <div class="card-body pt-0" style="margin-left: 20px">
+            <div class="row">
+              Vehicle type : {{ vtype }}
+            </div><br>
+            <div  class="row">
+              Vehicle number : {{ vno }}
+            </div><br>
+            <div class="row">
+              <div class="col-md-6 ">Source state : {{ ss }} </div>
+
+               <div class="col-md-6">Source district : {{ sd }} </div>
+
+            </div><br>
+            <div class="row">
+              <div class="col-md-6 ">Destination state : {{ ds }} </div>
+               <div class="col-md-6 ">Destination district : {{ dd }} </div>
+            </div><br>
+            <div  class="row">
+              Individual / Group : {{ ig }}
+            </div><br>
+          </div>
+        </div>
+          <div style="height: 26px"></div>
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Pass Validity</h3>
+          </div>
+          <div class="card-body pt-0">
+              <div class="row">
+              <div class="col-md-6 ">Valid From : {{ vf }} </div>
+               <div class="col-md-6 ">Valid To : {{ vt }} </div>
+            </div><br>
+          </div>
+        </div>
+      </div>
+    </div>
+     </div>
+
+</div>
+<footer class="main-footer">
+
+    <div class="row" style="color:#fff"><b>"""     Note*: EPass status has also been updated to your whatsapp</b></div>
+
+</footer>
+</body>
+</html>

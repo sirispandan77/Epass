@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--linking styles sheet--->C:\Eseva\venv\static\styles.css
+    <!---<link rel="stylesheet" type=”text/css” href="/Eseva/venv/static/styles.css">--->
+    <!--font awesome-->
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--including bootstarp css file--->
+    <!---<link rel="stylesheet" type="text/css" href="C:/Eseva/venv/public/bootstrap.min.css">--->
+
+    <!--ajax and jquery--->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body{
+           /* background-image: url('../public/cardriving.JPG');*/
+            background-image:  url('../static/imgs/cardriving.jpg');
+            background-size:cover;
+            background-position: center center;
+            background-attachment: fixed;
+
+        }
+        #ui{
+            background-color: #588BAE;
+            padding: 30px;
+            margin-top : 20px;
+            border-radius :20px;
+            opacity: 0.9;
+        }
+        #ui label{
+            color: #fff;
+        }
+    </style>
+    <script type="text/javascript">
+
+
+        function populate(s1,s2){
+            var s1 = document.getElementById(s1);
+            var ddropdown = document.getElementById(s2);
+            ddropdown.innerHTML="";
+            var state=s1.value;
+            console.log(s1.value );
+             console.log(" printed");
+            //let ddropdown = document.getElementById('locality-dropdown');
+                                        ddropdown.length = 0;
+
+                                        let ddefaultOption = document.createElement('option');
+                                        ddefaultOption.text = 'Choose Source District';
+
+                                        ddropdown.add(ddefaultOption);
+                                        ddropdown.selectedIndex = 0;
+
+                                        const url1 = 'https://api.covid19india.org/v4/data.json';
+
+                                        fetch(url1)
+                                          .then(
+                                            function(response) {
+                                              if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                  response.status);
+                                                return;
+                                              }
+
+                                              // Examine the text in the response
+                                              response.json().then(function(data) {
+                                                let option;
+                                                   console.log(data[state]['districts']);
+                                                for (let i in data[state]['districts']) {
+                                                  option = document.createElement('option');
+                                                  option.text = i;
+                                                  option.value = i;
+                                                  ddropdown.options.add(option);
+                                                }
+                                              });
+                                            }
+                                          )
+                                          .catch(function(err) {
+                                            console.error('Fetch Error -', err);
+                                          });
+        }
+    </script>
+</head>
+</head>
+<body>
+
+    <div class="container" id="ui">
+     <h1 class="text-center" style="color:white ; text-shadow: -1px 1px 0 #000, 1px 1px 0 #000,  1px -1px 0 #000, -1px -1px 0 #000;"><b>EPASS APPLICANT DETAILS FORM</b></h1>
+      <form class="form-group" method="post" action="/display">
+      <div class="row">
+                            <div class="col-lg-6">
+                                <label >First name: </label>
+                                <input type="text" class="form-control" name="fname" placeholder="First name" required>
+                            </div>
+                            <div class="col-lg-6">
+                                <label >Last name: </label>
+                                <input type="text" class="form-control" name="lname" placeholder="Last name" required>
+                            </div>
+                        </div><br>
+
+           <div class="row">
+                            <div class="col-lg-6">
+                                <label >Phone number: </label>
+                                <input type="number" class="form-control" name="pno" placeholder="Phone no." required="true">
+                            </div>
+                            <div class="col-lg-6">
+                                <label >Emergency Phone Number: </label>
+                                <input type="number" class="form-control" name="ephno" placeholder="Emergency Phone Number" required>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label >Why do you need a pass? : </label>
+                                <select id = "ypass" required>
+                                        <option> ---Choose options--- </option>
+                                        <option value="Agricultural Related Operations">Agricultural Related Operations</option>
+                                        <option value="Banking/Insurance/ATM Services">Banking/Insurance/ATM Services</option>
+                                        <option value="COVID-19 Dead Body Carrying">COVID-19 Dead Body Carrying</option>
+                                        <option value="Medical &amp; Pharma Services">Medical &amp; Pharma Services</option>
+                                        <option value="National / International Passenger Arrival">National / International Passenger Arrival</option>
+                                        <option value="Patient Attendant ">Patient Attendant</option>
+                                        <option value="Print &amp; Electronic Media">Print &amp; Electronic Media</option>
+                                        <option value="Pregnency">Pregnency <option value="Print &amp; Electronic Media">Print &amp; Electronic Media</option></option>
+                                        <option value="Sanitation Services">Sanitation Services</option>
+                                        <option value="Stranded Labour ">Stranded Labour </option>
+                                        <option value="Stranded Students "> Stranded Students </option>
+                                        <option value="To attend Marriage ">To attend Marriage</option>
+                                        <option value="Permitted Activities ">Permitted Activities</option>
+
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label >Required Pass for : </label><br>
+                               <select id = "ig" name="ig" required>
+                                    <option> ---Choose --- </option>
+                                    <option> Individual </option>
+                                    <option> Group </option>
+
+                                </select>
+                            </div>
+                        </div><br>
+                         <label> E-Mail: </label> <input type="email" name="email" class="form-control" placeholder="Enter your Email"><br>
+
+
+                        <h3 style="text-align: left;color:#ca2d2d;">Travel Details<hr style="border-top: 1px dotted #ca2d2d; margin-top: 2px;"></h3>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="vehtype">Vehicle Type<span>*</span></label>
+                                <select id="vehtype" name="vehtype" maxlength="48" required="true" onchange="getVehicle(this.value)">
+                                    <option value="">---Select here---</option>
+
+                                    <option value="2 Wheeler">2 Wheeler</option>
+
+                                    <option value="3 Wheeler">3 Wheeler</option>
+                                    <option value="4 Wheeler">4 Wheeler</option>
+                                    <option value="HEAVY MOTOR VEHICLE">HEAVY MOTOR VEHICLE</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="vehno">Vehicle Registartion No.<span>*</span></label>
+                                <input id="vehno" name="vehno" required="true" type="text" value="" maxlength="20">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label >Source State: </label>
+                                    <select id="state-dropdown" name="locality" onchange="populate(this.id,'sdlocality-dropdown')  "></select>
+                                    <script>
+
+                                        let dropdown = document.getElementById('state-dropdown');
+                                        dropdown.length = 0;
+                                           dropdown.innerHTML="";
+                                        let defaultOption = document.createElement('option');
+                                        defaultOption.text = 'Choose Source State/Province';
+
+                                        dropdown.add(defaultOption);
+                                        dropdown.selectedIndex = 0;
+
+                                        const url = 'https://api.covid19india.org/v4/data.json';
+
+                                        fetch(url)
+                                          .then(
+                                            function(response) {
+                                              if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                  response.status);
+                                                return;
+                                              }
+
+                                              // Examine the text in the response
+                                              response.json().then(function(data) {
+                                                let option;
+                                                console.log("function 1");
+                                                for (let i in data) {
+                                                  option = document.createElement('option');
+                                                  option.text = i;
+                                                  option.value = i;
+                                                  dropdown.add(option);
+                                                }
+                                              });
+                                            }
+                                          )
+                                          .catch(function(err) {
+                                            console.error('Fetch Error -', err);
+                                          });
+                                  /*        var select =document.getElementById('locality-dropdown');
+                                        arr=["html","java"];
+                                        for(var i=0;i<arr.length;i++){
+                                            var option=document.createElement("option"),
+                                            txt=document.createTextNode(arr[i]);
+                                            option.appendChild(txt);
+                                            select.insertBefore(option,select.lastChild);
+                                        }
+                                        */
+                                      /* var ourreq=new XMLHttpRequest();
+                                        ourreq.open('GET',url);
+                                        ourreq.onload= function(){
+                                            var jsondata=JSON.parse(ourreq.responseText);
+                                           // var stringdata=JSON.stringify(jsondata);
+                                           for(var x in jsondata)
+
+                                            console.log(x);
+                                            //for(var i=0;i<jsondata.length;i++){
+                                                console.log(jsondata);
+                                                /*for(var state in jsondata[i])
+                                                    console.log(state);
+                                                     //}
+                                            };
+
+                                        ourreq.send();*/
+
+                                 </script>
+                            </div><br>
+                            <div class="col-lg-6">
+                                <label >Source District: </label>    <select id="sdlocality-dropdown" name="sdlocality"></select>
+                            </div>
+                        </div><br>
+          <div class="row">
+                            <div class="col-lg-6">
+                                <label >Destination State: </label>
+                                <select id="dstate-dropdown" name="dslocality" onchange="populate(this.id,'ddistrict-dropdown')  "></select>
+                                 <script>
+
+                                        let dsdropdown = document.getElementById('dstate-dropdown');
+                                        dsdropdown.length = 0;
+                                        let dsdefaultOption = document.createElement('option');
+                                        dsdefaultOption.text = 'Choose Destination State/Province';
+
+                                        dsdropdown.add(dsdefaultOption);
+                                        dsdropdown.selectedIndex = 0;
+
+                                        const url2 = 'https://api.covid19india.org/v4/data.json';
+
+                                        fetch(url2)
+                                          .then(
+                                            function(response) {
+                                              if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                  response.status);
+                                                return;
+                                              }
+
+                                              // Examine the text in the response
+                                              response.json().then(function(data) {
+                                                let option;
+                                                console.log("function 1");
+                                                for (let i in data) {
+                                                  option = document.createElement('option');
+                                                  option.text = i;
+                                                  option.value = i;
+                                                  dsdropdown.add(option);
+                                                }
+                                              });
+                                            }
+                                          )
+                                          .catch(function(err) {
+                                            console.error('Fetch Error -', err);
+                                          });
+                                  /*        var select =document.getElementById('locality-dropdown');
+                                        arr=["html","java"];
+                                        for(var i=0;i<arr.length;i++){
+                                            var option=document.createElement("option"),
+                                            txt=document.createTextNode(arr[i]);
+                                            option.appendChild(txt);
+                                            select.insertBefore(option,select.lastChild);
+                                        }
+                                        */
+                                      /* var ourreq=new XMLHttpRequest();
+                                        ourreq.open('GET',url);
+                                        ourreq.onload= function(){
+                                            var jsondata=JSON.parse(ourreq.responseText);
+                                           // var stringdata=JSON.stringify(jsondata);
+                                           for(var x in jsondata)
+
+                                            console.log(x);
+                                            //for(var i=0;i<jsondata.length;i++){
+                                                console.log(jsondata);
+                                                /*for(var state in jsondata[i])
+                                                    console.log(state);
+                                                     //}
+                                            };
+
+                                        ourreq.send();*/
+
+                                 </script>
+                            </div><br>
+                            <div class="col-lg-6">
+                                <label >Destination District </label>
+                               <select id="ddistrict-dropdown" name="ddlocality"></select>
+                            </div>
+                        </div><br>
+          <h3 style="text-align: left;color:#ca2d2d;">Pass validity Period<hr style="border-top: 1px dotted #ca2d2d; margin-top: 2px;"></h3>
+                         <div class="row">
+                            <div class="col-lg-6">
+                                <label for="addr1">From(YYYY-MM-DD)<span>*</span></label>
+                            <input type="text" name="fromdate" id="fromdate" required="true" onchange="getYearcheck(this)" placeholder="YYYY-MM-DD" class="hasDatepicker">
+                        </div>
+                            <div class="col-lg-6">
+                                 <label for="todate">To (YYYY-MM-DD)<span>*</span></label>
+                            <input type="text" name="todate" id="todate" required="true" onchange="getYearcheck(this)" placeholder="YYYY-MM-DD" class="hasDatepicker">
+                        </div>
+                        </div><br>
+                       <h3 style="text-align: left;color:#ca2d2d;">Correspondence Address<hr style="border-top: 1px dotted #ca2d2d; margin-top: 2px;"></h3>
+                        <div class="row">
+                            <div class="col-lg-6">
+                               <label for="addr1">Address (House No, Building): <span>*</span></label>
+                                <input id="addr1" name="addr1" required="true" type="text" value="" maxlength="100">
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="addr2">Address Line 2 (Street/Village/Colony)</label>
+                                <input id="addr2" name="addr2" required="true" type="text" value="" maxlength="100">
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="addr3">Address Line 3 :</label>
+                                <input id="addr3" name="addr3"  type="text" value="" maxlength="100">
+                            </div>
+                            <div class="col-lg-6">
+                                    <label for="addrtown">City/Town:<span>*</span></label>
+                                    <input id="addrtown" name="addrtown" required="true" type="text" value="" maxlength="38">
+
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="addrdist">District: <span>*</span></label>
+                                <input id="addrdist" name="addrdist" required="true" type="text" value="" maxlength="48">
+                            </div>
+                            <div class="col-lg-6">
+                                    <label for="addrstate">State:<span>*</span></label>
+                                    <select id="addrstate" name="addrstate" required="true"><option value="TELANGANA">TELANGANA</option></select>
+
+                            </div>
+
+                        </div><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="addrpin">PIN<span>*</span></label>
+                                <input id="addrpin" name="addrpin" required="true" type="text" value="" maxlength="6">
+                                </div>
+                            </div><br>
+
+                        <div >
+
+                            <label for="addrstate">ID Proof <font color="blue">(Only photo drive link)</font></label>
+                            <!--<input type="file" name="photo" id="photo" required="true" accept="image/jpeg,image/jpg" data-max_size="1000000" onchange="return getPhotoCheck(this);">--->
+                            <input id="link" name="link" required="true" type="url" >
+                        </div><br>
+                        <div style="color:red; font-weight: bold;"><span style="font-size: 18px;">Note:-</span> Issue of e passes shall be subject to conditions viz., Resident of individual / office location / area of movement</div>
+                        <br>
+
+        <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
+      </form>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
