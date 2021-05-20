@@ -53,8 +53,8 @@ def login_register():
     tpass=(cnt/pop)*100
     if tpass <40 and request.method=='POST':
         status="CONFIRMED"
-        '''client.messages.create(to="whatsapp:9440455577",
-                               from_="whatsapp:+1 (415) 523-8886",
+        '''client.messages.create(to="whatsapp:9440XXXXX",
+                               from_="whatsapp:+1 (415) 523-8XXX",
                             body="Hey "+fullname+" , EPass for your travel from"+ srcstate +" to "+dstate+ " has been "+status +" . pack your bags for "+ passfrom )'''
 
         message = client.messages.create(
