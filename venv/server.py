@@ -72,9 +72,9 @@ def login_register():
         message = client.messages.create(
             from_='whatsapp:+14155238886',
             body="Hey "+fullname+" , EPass for your travel from"+ srcstate +" to "+dstate+ " has been "+status +" . please apply later. " ,
-            to='whatsapp:+919440455577'
+            to='whatsapp:+9194404xxxxxx'
         )
-        '''client.message.create(to="whatsapp:9440455577",
+        '''client.message.create(to="whatsapp:94404xxxxxx",
                                from_="whatsapp:+1 (415) 523-8886",
                             body="Hey "+fullname+" , EPass for your travel from "+ srcstate +" to "+dstate+ " has been "+status +" . please apply later. " )'''
         return render_template('display.html', fullname= fullname , fname= fname, lname=lname, phno=phno, emno=emno, email=email, link=url, vtype=vtype, vno=vno , goi= grporin  , ss= srcstate, sd= srcdist, ds= dstate, dd=ddist,vf=passfrom, vt=passto , ig=grporin)
