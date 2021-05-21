@@ -4,7 +4,7 @@ from twilio.rest import Client
 import requests
 import requests_cache
 account_sid='xxxxxxxxxxxxxxxxxxxxxxxxxxx'
-auth_token ='e33b1e4337c4e01fc82e90d2a443a930'
+auth_token ='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 client =Client(account_sid,auth_token)
 app= Flask(__name__, static_url_path='/static')      #its a flask object
 
